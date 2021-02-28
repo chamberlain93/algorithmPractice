@@ -5,35 +5,35 @@ package com.chamberlain.acm.chapter_2_1;
  */
 public class LakeCounting {
 
-    private int x=6;
-    private int y=6;
-    private char[][] field = {{'w','w','*','*','*','*'},
-                              {'*','w','*','*','w','w'},
-                              {'*','w','*','*','w','w'},
-                              {'w','w','*','*','w','*'},
-                              {'*','w','*','*','w','w'},
-                              {'*','w','*','*','w','w'}};
 
 
-    public void dfs(int i,int j){
-        field[i][j]='*';
+
+    public void dfs(char[][] grid, int i,int j){
+        grid[i][j]='*';
+        int x = grid.length;
+        int y = grid[0].length;
         for (int ai=-1;ai<=1;ai++){
             for (int bi=-1;bi<=1;bi++){
+                if (Math.abs(ai)==Math.abs(bi)){
+                    continue;
+                }
                 int ci = i+ai;
                 int cj = j+bi;
-                if (ci<=x-1&&ci>=0&&cj<=y-1&&cj>=0&&field[ci][cj]=='w'){
-                    dfs(ci,cj);
+                if (ci<=x-1&&ci>=0&&cj<=y-1&&cj>=0&&grid[ci][cj]=='w'){
+                    dfs(grid,ci,cj);
                 }
             }
         }
     }
 
-    public int solve(){
+    public int numIslands(char[][] grid) {
         int result= 0;
+        int x = grid.length;
+        int y = grid[0].length;
         for (int i =0;i<x;i++){
             for (int j = 0;j<y;j++){
-                if (field[i][j]=='w'){
-                    dfs(i,j);
+                if (grid[i][j]=='w'){
+                    dfs(grid,i,j);
                     result++;
                 }
 
@@ -43,6 +43,12 @@ public class LakeCounting {
     }
 
     public static void main(String[] args){
-        System.out.println(new LakeCounting().solve());
+        char[][] grid = {
+                {'w','w','*','*','*'},
+                {'w','w','*','*','*'},
+                {'*','*','w','*','*'},
+                {'*','*','*','w','w'},
+                };
+        System.out.println(new LakeCounting().numIslands(grid));
     }
 }
