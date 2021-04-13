@@ -6,6 +6,28 @@ package com.chamberlain.leetcode.bytedance.dp;
 public class MaximalSquare {
 
     public int maximalSquare(char[][] matrix) {
-        return 1;
+
+        if (matrix == null || matrix.length ==0){
+            return 0;
+        }
+        int[][] dp = new int[matrix.length + 1][matrix[0].length + 1];
+        int max = 0;
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                if (matrix[i][j] == '1') {
+                    dp[i + 1][j + 1] = Math.min(dp[i + 1][j], Math.min(dp[i][j + 1], dp[i][j])) + 1;
+                    max = Math.max(dp[i + 1][j + 1], max);
+                }
+            }
+        }
+
+        return max * max;
+    }
+
+    public static void main(String[] args) {
+        MaximalSquare maximalSquare = new MaximalSquare();
+        char[][] matrix = {{'1','0','1','0','0'},{'1','0','1','1','1'},{'1','1','1','1','1'},{'1','0','0','1','0'}};
+        //char[][] matrix = {{'0','1'}};
+        System.out.println(maximalSquare.maximalSquare(matrix));
     }
 }
