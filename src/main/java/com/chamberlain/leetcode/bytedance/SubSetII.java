@@ -13,6 +13,7 @@ public class SubSetII {
         if (nums == null){
             return null;
         }
+        Arrays.sort(nums);
         dfs(result, new ArrayList<>(), 0, nums);
         return result;
     }
