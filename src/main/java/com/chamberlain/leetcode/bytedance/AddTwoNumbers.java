@@ -1,4 +1,4 @@
-package com.chamberlain.leetcode.medium;
+package com.chamberlain.leetcode.bytedance;
 
 
 import com.chamberlain.leetcode.basicClass.ListNode;
