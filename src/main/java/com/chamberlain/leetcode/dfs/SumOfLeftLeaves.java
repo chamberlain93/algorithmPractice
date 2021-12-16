@@ -20,7 +20,7 @@ public class SumOfLeftLeaves {
             sum += root.left.val;
         }
 
-       sumOfLeftLeaves(root.left);
+        sumOfLeftLeaves(root.left);
         sumOfLeftLeaves(root.right);
         return sum;
     }
